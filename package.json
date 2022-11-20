@@ -1,0 +1,26 @@
+{
+  "name": "serverproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elimelech001/serverProject.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elimelech001/serverProject/issues"
+  },
+  "homepage": "https://github.com/elimelech001/serverProject#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "factorial": "^2.0.0",
+    "nodemon": "^2.0.20",
+    "prime-number": "^1.0.2"
+  }
+}

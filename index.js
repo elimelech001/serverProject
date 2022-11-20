@@ -51,14 +51,11 @@ const server = http.createServer((request, response) => {
     } else {
       fs.readFile("./contacs.json", sendfiles(request, response, "text/json"));
     }
-  } 
-  else if(request.url==("/comps")){
+  } else if (request.url == "/comps") {
     fs.readFile("./comps.html", sendfiles(request, response, "text/html"));
-
-  }
-  else if (request.url.startsWith("/comps/factiral")) {
+  } else if (request.url.startsWith("/comps/factiral")) {
     const split = request.url.split("/")[3];
-    
+
     const factir = factorial(split);
     response.write(`${factir}`);
     response.end();
