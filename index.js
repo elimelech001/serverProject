@@ -1,7 +1,8 @@
 const http = require("http");
 const fs = require("fs");
-const e = require("express");
-
+const isPrime = require("prime-number");
+const factorial = require("factorial");
+const primeNumber = require("prime-number");
 const sendfiles = (req, response, type) => (err, data) => {
   response.writeHead(200, { "content-type": type });
   response.write(data);
@@ -14,7 +15,9 @@ const server = http.createServer((request, response) => {
   } else if (request.url == "/pages/about") {
     fs.readFile("./pagesAbout.html", sendfiles(request, response, "text/html"));
   } else if (request.url == "/pages/sports") {
-    fs.readFile( "./pagesSports.html",sendfiles(request, response, "text/html")
+    fs.readFile(
+      "./pagesSports.html",
+      sendfiles(request, response, "text/html")
     );
   } else if (request.url == "/files") {
     fs.readFile("./files.html", sendfiles(request, response, "text/html"));
@@ -48,9 +51,20 @@ const server = http.createServer((request, response) => {
     } else {
       fs.readFile("./contacs.json", sendfiles(request, response, "text/json"));
     }
+  } else if (request.url.startsWith("/comps/factiral")) {
+    const split = request.url.split("/")[3];
+    const factir = factorial(split);
+    response.write(`${factir}`);
+    response.end();
+  } else if (request.url.startsWith("/comps/primes")) {
+    const split = request.url.split("/")[3];
+    const primes = primeNumber(split);
+    response.write(primes ? "prime number" : "not a prime number");
+    response.end();
   } else {
     response.statusCode = 404;
     response.write("no such url");
+    console.log(request.url);
     return response.end();
   }
 });
