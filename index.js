@@ -10,7 +10,15 @@ const sendfiles = (req, response, type) => (err, data) => {
 };
 
 const server = http.createServer((request, response) => {
-  if (request.url == "/pages") {
+  if (request.url == "/") {
+    response.write(`
+    <a href='pages'>pages</a> 
+    <a href='files'>files</a>
+     <a href='contacs'>contacs</a>
+     <a href='comps'>comps</a>`
+     )
+    response.end()
+  } else if (request.url == "/pages") {
     fs.readFile("./pages.html", sendfiles(request, response, "text/html"));
   } else if (request.url == "/pages/about") {
     fs.readFile("./pagesAbout.html", sendfiles(request, response, "text/html"));
@@ -72,4 +80,4 @@ const server = http.createServer((request, response) => {
   }
 });
 
-server.listen(5000, () => console.log("listening"));
+server.listen(5000, () => console.log("listening on port 5000"));
